@@ -3,6 +3,8 @@ import { Grid, Card, CardContent, Typography, Box, IconButton } from "@mui/mater
 import { People, RestaurantMenu, EventAvailable, ListAlt, MenuBook } from "@mui/icons-material";
 import CookingMode from "./CookingMode"; // Import the new CookingMode component
 import { useNavigate } from "react-router-dom";
+import logo from './assets/logo.jpg'; // Adjust the path if necessary
+
 
 
 interface DashboardCardProps {
@@ -70,7 +72,19 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Typography variant="h2" color="black">Admin Dashboard</Typography>
+      <Box sx={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center', // Center horizontally
+      padding: 2 
+  }}>
+    <img 
+      src={logo} 
+      alt="Logo" 
+      style={{ width: '100px', height: 'auto', marginRight: '16px' }} 
+    /> {/* Add your logo here */}
+    <Typography variant="h2" color="black">Admin Dashboard</Typography>
+  </Box>       
       <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
         <Grid container spacing={3}>
           {cards.map((card, index) => (

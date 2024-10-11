@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { ExpandMore, RestaurantMenu } from "@mui/icons-material";
 import axios from "axios";
+import logo from './assets/logo.jpg'; // Adjust the path if necessary
 import BackButton from "./components/BackButton";
 
 
@@ -107,10 +108,20 @@ const RecipeList: React.FC = () => {
 
   return (
     <>
+    <Box sx={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center', // Center horizontally
+      padding: 2 
+  }}>
+    <img 
+      src={logo} 
+      alt="Logo" 
+      style={{ width: '100px', height: 'auto', marginRight: '16px' }} 
+    /> {/* Add your logo here */}
+    <Typography variant="h2" color="black">Recipe List</Typography>
+  </Box>    
       <BackButton />
-      <Typography variant="h2" color="black" gutterBottom>
-        Recipe List
-      </Typography>
       <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
         <Grid container spacing={3}>
           {recipes.map((recipe) => (
