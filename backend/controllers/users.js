@@ -17,6 +17,26 @@ const getUsers = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { text_to_speech, enlarged_text } = req.body;
+
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .update({ text_to_speech, enlarged_text })
+      .eq('id', id);
+
+    if (error) {
+      throw error;
+    }
+
+    res.json("Successfully updated user preferences");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 const login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -44,5 +64,6 @@ const login = async (req, res) => {
 // Export the controller method(s)
 module.exports = {
   getUsers,
+  updateUser,
   login
 };
