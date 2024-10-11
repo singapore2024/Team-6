@@ -132,7 +132,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         variant="contained" 
                         color="primary" 
                         onClick={decrementNextTask1} 
-                        disabled={currentTask1 >= tasks.length - 1} // Disable button if on the last task
+                        disabled={currentTask1 <= 0} // Disable button if on the last task
                     >
                         Undo 1
                     </Button>
@@ -152,7 +152,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         variant="contained" 
                         color="primary" 
                         onClick={decrementNextTask2} 
-                        disabled={currentTask2 >= tasks.length - 1} // Disable button if on the last task
+                        disabled={currentTask2 <= 0} // Disable button if on the last task
                     >
                         Undo 2
                     </Button>
@@ -172,7 +172,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         variant="contained" 
                         color="primary" 
                         onClick={decrementNextTask3} 
-                        disabled={currentTask3 >= tasks.length - 1} // Disable button if on the last task
+                        disabled={currentTask3 <= 0} // Disable button if on the last task
                     >
                         Undo 3
                     </Button>
