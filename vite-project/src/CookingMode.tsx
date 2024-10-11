@@ -7,12 +7,27 @@ interface CookingModeProps {
 }
 
 const tasks = [1, 2, 3]; // Example tasks in ascending order
-const taskList = ["Prepare Chicken", "Cook Chicken", "Serve Chicken"];
-const taskDescription = [
-    "Marinate Chicken, Cut Chicken",
-    "Set oven to 180 degrees, oven bake for 25 minutes",
-    "Cut into 4 slices"
+const taskList1 = ["Cook Spaghetti", "Drain Spaghetti", "Plate Spaghetti"];
+const taskDescription1 = [
+    "Follow package instructions for 4000g of spaghetti",
+    "Leave 100ml of pasta water",
+    "Scoop 400g of spaghetti into each box"
 ];
+const taskList2 = ["Defrost Bacon", "Fry bacon", "Cut bacon"];
+const taskDescription2 = [
+    "Place on tabletop for 10 minutes",
+    "Fry 10 strips of bacon on medium heat for 8 minutes",
+    "Cut all the bacon into small pieces"
+];
+const taskList3 = ["Package food", "Pack into cooler bag", "Prep for delivery"];
+const taskDescription3 = [
+    "Place spaghetti into 10 boxes",
+    "Place 10 boxes of spaghetti into delivery bag",
+    "Wait for delivery rider to collect food"
+];
+
+// const taskListList = [taskList1, taskList2, taskList3];
+// const taskDescriptionList = [taskDescription1, taskDescription2, taskDescription3];
 
 const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
   const [currentTask1, setCurrentTask1] = useState(0);
@@ -62,7 +77,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
     if (taskNumber === currentTasks[personNumber - 1] + 1) {
       return { color: 'black', backgroundColor: 'pink', padding: '8px', borderRadius: '4px' }; // Current task
     } else if (taskNumber < currentTasks[personNumber - 1] + 1) {
-        return { color: 'black', opacity: 0.5}; // Past tasks
+        return { color: 'black', opacity: 0.15}; // Past tasks
       } else {
         return { color: 'grey', opacity: 0.15 }; // Future tasks
       }
@@ -73,6 +88,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
         if ('speechSynthesis' in window) {
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.lang = 'en-US'; // Set language if needed
+          utterance.rate = 0.7; // Slower
           window.speechSynthesis.speak(utterance);
         } else {
           console.error("Text-to-speech not supported in this browser.");
@@ -98,28 +114,32 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           overflow: 'hidden', // Prevent any overflow issues
         }}
       >
-        <Typography variant="h2" sx={{ marginBottom: 3 }} color="black">Cooking Mode</Typography>
+        {/* <Typography variant="h2" sx={{ marginBottom: 3 }} color="black">Cooking Mode</Typography> */}
         
         <Grid container spacing={4} sx={{ width: '80%' }}>
           <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
+                <Typography color="black" variant="h2"><b>Tom</b></Typography>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
                     <Typography 
                         sx={{ ...getTaskStyle(1, taskNumber) }}
-                        variant="h3"
+                        variant="h4"
                     >
-                        {taskList[taskNumber - 1]}
+                        {taskList1[taskNumber - 1]}
                     </Typography>
                     {/* Conditional rendering for task description */}
                     {taskNumber === currentTask1 + 1 && (
-                        <Typography sx={{ ...getTaskStyle(1, taskNumber) }} color="black" variant="h6">
-                        {taskDescription[taskNumber - 1]}
+                        <Typography sx={{ ...getTaskStyle(1, taskNumber) }} color="black" variant="body2">
+                        {taskDescription1[taskNumber - 1]}
                         </Typography>
                     )}
                     </React.Fragment>
                 ))}
             </Box>
+            <br />
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
@@ -127,48 +147,62 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         color="primary" 
                         onClick={() => {
                             decrementNextTask1();
-                            speak(taskList[currentTask1-1]);
-                            speak(taskDescription[currentTask1-1]);
+                            speak(taskList1[currentTask1-1]);
+                            speak(taskDescription1[currentTask1-1]);
                         }}
                         disabled={currentTask1 <= 0} // Disable button if on the last task
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Undo 1
+                        Undo
                     </Button>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         onClick={() => {
                             incrementNextTask1();
-                            speak(taskList[currentTask1+1]);
-                            speak(taskDescription[currentTask1+1]);
+                            speak(taskList1[currentTask1+1]);
+                            speak(taskDescription1[currentTask1+1]);
                         }}
                         disabled={currentTask1 >= tasks.length - 1} // Disable button if on the last task
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Next 1
+                        Next
                     </Button>
                 </Box>
             </Container>
 
           </Grid>
           <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
+                <Typography color="black" variant="h2"><b>Dick</b></Typography>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
                     <Typography 
                         sx={{ ...getTaskStyle(2, taskNumber) }}
-                        variant="h3"
+                        variant="h4"
                     >
-                        {taskList[taskNumber - 1]}
+                        {taskList2[taskNumber - 1]}
                     </Typography>
                     {/* Conditional rendering for task description */}
                     {taskNumber === currentTask2 + 1 && (
-                        <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="h6">
-                        {taskDescription[taskNumber - 1]}
+                        <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="body2">
+                        {taskDescription2[taskNumber - 1]}
                         </Typography>
                     )}
                     </React.Fragment>
                 ))}
             </Box>
+            <br />
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
@@ -176,56 +210,80 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         color="primary" 
                         onClick={decrementNextTask2} 
                         disabled={currentTask2 <= 0} // Disable button if on the last task
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Undo 2
+                        Undo
                     </Button>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         onClick={incrementNextTask2} 
                         disabled={currentTask2 >= tasks.length - 1} // Disable button if on the last task
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Next 2
+                        Next
                     </Button>
                 </Box>
             </Container>
           </Grid>
           <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
+                <Typography color="black" variant="h2"><b>Harry</b></Typography>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
                     <Typography 
                         sx={{ ...getTaskStyle(3, taskNumber) }}
-                        variant="h3"
+                        variant="h4"
                     >
-                        {taskList[taskNumber - 1]}
+                        {taskList3[taskNumber - 1]}
                     </Typography>
                     {/* Conditional rendering for task description */}
                     {taskNumber === currentTask3 + 1 && (
-                        <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="h6">
-                        {taskDescription[taskNumber - 1]}
+                        <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="body2">
+                        {taskDescription3[taskNumber - 1]}
                         </Typography>
                     )}
                     </React.Fragment>
                 ))}
             </Box>
+            <br />
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         onClick={decrementNextTask3} 
-                        disabled={currentTask3 <= 0} // Disable button if on the last task
+                        disabled={currentTask3 <= 0}
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Undo 3
+                        Undo
                     </Button>
                     <Button 
                         variant="contained" 
                         color="primary" 
                         onClick={incrementNextTask3} 
                         disabled={currentTask3 >= tasks.length - 1} // Disable button if on the last task
+                        sx={{
+                            fontSize: '1.5rem',  // Increase text size
+                            padding: '16px 32px', // Add more padding to make the button bigger
+                            minWidth: '200px',    // Ensure minimum button width
+                          }}
                     >
-                        Next 3
+                        Next
                     </Button>
                 </Box>
             </Container>
@@ -233,9 +291,6 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
         </Grid>
   
         <Box sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
-            
-            
-           
           <Button
             startIcon={<Close />}
             variant="contained"
