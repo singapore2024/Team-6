@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card, CardContent, Typography, Box, IconButton } from "@mui/material";
+import { Grid, Card, CardContent, Typography, Box, IconButton, colors } from "@mui/material";
 import { Star, People, RestaurantMenu, EventAvailable, ListAlt, MenuBook } from "@mui/icons-material";
 
 interface DashboardCardProps {
@@ -47,15 +47,18 @@ const Dashboard: React.FC = () => {
       ];
 
   return (
-    <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
-      <Grid container spacing={3}>
-        {cards.map((card, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <DashboardCard title={card.title} icon={card.icon} />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <>
+        <Typography variant="h2" color="black">Admin Dashboard</Typography>
+        <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
+        <Grid container spacing={3}>
+            {cards.map((card, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <DashboardCard title={card.title} icon={card.icon} />
+            </Grid>
+            ))}
+        </Grid>
+        </Box>
+    </>
   );
 };
 
