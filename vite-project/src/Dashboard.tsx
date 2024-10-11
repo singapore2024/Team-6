@@ -52,15 +52,18 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, icon, description,
 };
 
 const Dashboard: React.FC = () => {
+  const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+  const userType = user.role || ''; // Check the user type
+
   const navigate = useNavigate();
   const [isFullScreen, setIsFullScreen] = useState(false); // State for full-screen mode
 
   const cards = [
     { title: "View Orders", icon: <ListAlt fontSize="large" />, onClick: () => navigate("/orders") },
-    { title: "Manage Leaves", icon: <EventAvailable fontSize="large" /> },
+    { title: "Manage Leaves", icon: <EventAvailable fontSize="large" />, hideFor: "employee" },
     { title: "Cooking Mode", icon: <RestaurantMenu fontSize="large" />, onClick: () => setIsFullScreen(true) }, // Activate full-screen on click
     { title: "Recipes", icon: <MenuBook fontSize="large" />, onClick: () => navigate("/recipes") },
-    { title: "Employee Profiles", icon: <People fontSize="large" />, onClick: () => navigate("/employees") },
+    { title: "Employee Profiles", icon: <People fontSize="large" />, hideFor: "employee", onClick: () => navigate("/employees") },
   ];
 
   // If full screen is active, render the CookingMode component
@@ -73,15 +76,17 @@ const Dashboard: React.FC = () => {
       <Typography variant="h2" color="black">Admin Dashboard</Typography>
       <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
         <Grid container spacing={3}>
-          {cards.map((card, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <DashboardCard
-                title={card.title}
-                icon={card.icon}
-                onClick={card.onClick} // Pass the click handler if provided
-              />
-            </Grid>
-          ))}
+          {cards
+            .filter(card => !(card.hideFor && card.hideFor === userType))
+            .map((card, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <DashboardCard
+                  title={card.title}
+                  icon={card.icon}
+                  onClick={card.onClick} // Pass the click handler if provided
+                />
+              </Grid>
+            ))}
         </Grid>
       </Box>
     </>
