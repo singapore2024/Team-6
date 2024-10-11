@@ -9,6 +9,7 @@ const db = require('./database');
 // Basic GET route for the home page
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/recipes', require('./routes/recipes'));
+app.use('/api/v1/orders', require('./routes/orders'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Express app!' });
