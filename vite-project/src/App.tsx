@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-import Dashboard from './Dashboard'; 
-import Leaves from "./Leaves"
+import Dashboard from './Dashboard'; // Import your Dashboard component here
+import RecipeList from './Recipe';
 
 function App() {
   return (
-    <>
-      {/* <Dashboard /> Use the Dashboard component here */}
-      <Leaves />
-    </>
+    // <>
+    //   <Dashboard /> {/* Use the Dashboard component here */}
+    // </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/recipes" element={<RecipeList />} />
+        <Route ></Route>
+      </Routes>
+    </Router>
   );
 }
 
