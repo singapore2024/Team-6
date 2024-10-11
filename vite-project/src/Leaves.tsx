@@ -2,7 +2,6 @@ import { colors } from "@mui/material";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import DialogBox from "./dialogBox";
 import { useNavigate } from "react-router-dom";
 
 interface LeaveFormState {
@@ -19,6 +18,7 @@ interface LeaveFormState {
 const ApplyLeaveForm: React.FC = () => {
     const [dialogVisible, setDialogVisible] = useState(false);
     const navigate = useNavigate()
+
 
   const [formState, setFormState] = useState<LeaveFormState>({
     name: "",
@@ -79,13 +79,13 @@ const ApplyLeaveForm: React.FC = () => {
       <p className="font-calibri text-[40px] mt-5 font-bold text-darkBlue">Apply for Leave</p>
       <form className="flex flex-col w-[90%] justify-center mt-10" onSubmit={handleSubmit}>
             <div>
-                <p className="font-montserrat mt-5 mb-5 flex justify-start pl-3 font-thin text-grey text-[20px]">
+                <p className="font-calibri mt-5 mb-5 flex justify-start pl-3 font-thin text-grey text-[20px]">
                     Tan Xiao Ming
                 </p>
             </div>
         <div className="flex flex-row">
           <div className="flex flex-col w-[28%] mr-12">
-            <p className="font-montserrat mt-5 flex justify-start pl-3 font-thin text-grey">Start Date</p>
+            <p className="font-calibri mt-5 flex justify-start pl-3 font-thin text-grey">Start Date</p>
             <DatePicker
               name="startDate"
               className="p-3 pr-5 rounded-xl text-black flex justify-start bg-white text-[16px]"
@@ -94,7 +94,7 @@ const ApplyLeaveForm: React.FC = () => {
             />
           </div>
           <div className="flex flex-col ml-10 w-[35%] ml-12">
-            <p className="font-montserrat mt-5 flex justify-start pl-3 font-thin text-grey">End Date</p>
+            <p className="font-calibri mt-5 flex justify-start pl-3 font-thin text-grey">End Date</p>
             <DatePicker
               name="endDate"
               className="p-3 pr-5 rounded-xl text-black flex justify-start bg-white text-[16px]"
@@ -103,7 +103,7 @@ const ApplyLeaveForm: React.FC = () => {
             />
           </div>
         </div>
-        <label className="font-montserrat mt-10 flex justify-start pl-3 font-thin text-grey">Choose Leave Type:</label>
+        <label className="font-calibri mt-10 flex justify-start pl-3 font-thin text-grey">Choose Leave Type:</label>
         <select
             name="leaveType"
             value={formState.leaveType}
