@@ -18,7 +18,7 @@ const taskDescription1 = [
 const taskList2 = ["Defrost Bacon", "Fry bacon", "Cut bacon"];
 const taskDescription2 = [
     "Place on tabletop for 10 minutes",
-    "Fry 10 strips of bacon on medium heat for 8 minutes",
+    "Fry 10 bacon strips on med heat for 8 mins",
     "Cut all the bacon into small pieces"
 ];
 const taskList3 = ["Package food", "Pack into cooler bag", "Prep for delivery"];
@@ -192,7 +192,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
-                        <Box sx={{ ...getTaskStyle(1, taskNumber) }}>
+                        <Box sx={{ ...getTaskStyle(2, taskNumber) }}>
                     <Typography 
                         sx={{ ...getTaskStyle(2, taskNumber) }}
                         variant="h4"
@@ -248,7 +248,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
-                        <Box sx={{ ...getTaskStyle(1, taskNumber) }}>
+                        <Box sx={{ ...getTaskStyle(3, taskNumber) }}>
                     <Typography 
                         sx={{ ...getTaskStyle(3, taskNumber) }}
                         variant="h4"
