@@ -68,7 +68,7 @@ const EmployeesPage: React.FC = () => {
     ];
     return (
         <>
-            <BackButton></BackButton>
+            <BackButton />
             <div className='w-[680px] h-full'>
                 <Typography variant="h2" color="black">Employee's Profiles</Typography>
                 <ul className='w-full min-h-96 max-h-96 h-full items-center list-disc gap-1 overflow-y-scroll'>

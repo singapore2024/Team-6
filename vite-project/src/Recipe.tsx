@@ -12,7 +12,7 @@ import {
 import { ExpandMore, RestaurantMenu } from "@mui/icons-material";
 import axios from "axios";
 import logo from './assets/logo.jpg'; // Adjust the path if necessary
-
+import BackButton from "./components/BackButton";
 
 
 interface Recipe {
@@ -121,6 +121,7 @@ const RecipeList: React.FC = () => {
     /> {/* Add your logo here */}
     <Typography variant="h2" color="black">Recipe List</Typography>
   </Box>    
+      <BackButton />
       <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
         <Grid container spacing={3}>
           {recipes.map((recipe) => (
