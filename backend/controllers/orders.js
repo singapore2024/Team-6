@@ -1,7 +1,6 @@
-const supabase = require('../database');  // Import the Supabase client
+const supabase = require('../database');
 const ORDERS_TABLE = 'orders';
 
-// Controller method to get all orders
 const getOrders = async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -21,4 +20,3 @@ const getOrders = async (req, res) => {
 module.exports = {
     getOrders,
     };
-    

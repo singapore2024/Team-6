@@ -10,6 +10,7 @@ const db = require('./database');
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/recipes', require('./routes/recipes'));
 app.use('/api/v1/orders', require('./routes/orders'));
+app.use('/api/v1/leaveRequests', require('./routes/leaveRequests'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Express app!' });
