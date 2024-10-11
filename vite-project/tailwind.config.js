@@ -10,8 +10,9 @@ export default {
         lightPurple: "#F1ECFD",
         white: "#FFFFFF",
         grey: "#7E7E7E",
-        darkBlue: "#080357",
+        darkBlue: "#384C6A",
         offwhite: "#F8F8FA",
+        orange: "#E48A2A"
       },
 
       fontFamily: {
@@ -20,6 +21,7 @@ export default {
         lato: ["Lato"],
         garamond: ["Garamond"],
         product: ["Product Sans"],
+        calibri: ["Calibri", "sans-serif"],
       },
     },
   },

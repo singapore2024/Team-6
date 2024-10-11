@@ -2,6 +2,8 @@ import { colors } from "@mui/material";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DialogBox from "./dialogBox";
+import { useNavigate } from "react-router-dom";
 
 interface LeaveFormState {
   name: string;
@@ -12,7 +14,12 @@ interface LeaveFormState {
   formSubmitted: boolean;
 }
 
+
+
 const ApplyLeaveForm: React.FC = () => {
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const navigate = useNavigate()
+
   const [formState, setFormState] = useState<LeaveFormState>({
     name: "",
     startDate: new Date(),
@@ -21,6 +28,15 @@ const ApplyLeaveForm: React.FC = () => {
     loading: false,
     formSubmitted: false,
   });
+
+//   const dialogProps = {
+//     title: "Leave is successfully applied!",
+//     message: "Your operation was successful!"
+//   };
+
+  const handleClose = () => {
+    setDialogVisible(false);
+  }
 
   const handleDateChange = (fieldName: keyof Pick<LeaveFormState, 'startDate' | 'endDate'>, date: Date | null) => {
     if (date !== null) {
@@ -44,10 +60,14 @@ const ApplyLeaveForm: React.FC = () => {
     event.preventDefault();
     setFormState({ ...formState, loading: true });
     console.log(formState)
+    // setDialogVisible(true)
+    navigate("/")
+
 
     setTimeout(() => {
       setFormState({ ...formState, loading: false, formSubmitted: true });
-    }, 2000);
+    }, 3000);
+    navigate("/")
   };
 
   if (formState.formSubmitted) {
@@ -55,8 +75,8 @@ const ApplyLeaveForm: React.FC = () => {
   }
 
   return (
-    <div className="bg-offwhite flex flex-col justify-center items-center">
-      <p className="font-montserrat text-[40px] mt-12 font-bold text-purple">Apply for Leave</p>
+    <div className="bg-offwhite flex flex-col justify-center items-center h-[50%] pt-10 pb-12 rounded-xl pl-5 pr-5">
+      <p className="font-calibri text-[40px] mt-5 font-bold text-darkBlue">Apply for Leave</p>
       <form className="flex flex-col w-[90%] justify-center mt-10" onSubmit={handleSubmit}>
             <div>
                 <p className="font-montserrat mt-5 mb-5 flex justify-start pl-3 font-thin text-grey text-[20px]">
@@ -64,7 +84,6 @@ const ApplyLeaveForm: React.FC = () => {
                 </p>
             </div>
         <div className="flex flex-row">
-
           <div className="flex flex-col w-[28%] mr-12">
             <p className="font-montserrat mt-5 flex justify-start pl-3 font-thin text-grey">Start Date</p>
             <DatePicker
@@ -98,7 +117,7 @@ const ApplyLeaveForm: React.FC = () => {
             </select>
         <button
           type="submit"
-          className="bg-purple text-white py-3 rounded-lg font-bold mt-10 text-[16px] align-items font-montserrat"
+          className="bg-darkBlue text-white py-3 rounded-lg font-bold mt-10 text-[16px] align-items font-calibri"
           disabled={formState.loading}
         >
           {formState.loading ? 'Submitting...' : 'Apply for Leave'}
