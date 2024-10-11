@@ -59,8 +59,8 @@ const Dashboard: React.FC = () => {
     { title: "View Orders", icon: <ListAlt fontSize="large" /> },
     { title: "Manage Leaves", icon: <EventAvailable fontSize="large" /> },
     { title: "Cooking Mode", icon: <RestaurantMenu fontSize="large" />, onClick: () => setIsFullScreen(true) }, // Activate full-screen on click
-    { title: "Recipes", icon: <MenuBook fontSize="large" /> , onClick: () => navigate("/recipes")},
-    { title: "Employee Profiles", icon: <People fontSize="large" /> },
+    { title: "Recipes", icon: <MenuBook fontSize="large" />, onClick: () => navigate("/recipes") },
+    { title: "Employee Profiles", icon: <People fontSize="large" />, onClick: () => navigate("/employees") },
   ];
 
   // If full screen is active, render the CookingMode component
