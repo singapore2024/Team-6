@@ -8,7 +8,9 @@ import RecipeList from './Recipe';
 import Orders from './Orders';
 
 function App() {
+  
   return (
+
     // <>
     //   <Dashboard /> {/* Use the Dashboard component here */}
     // </>
@@ -16,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/recipes" element={<RecipeList />} />
-        <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/orders" element={<Orders />} ></Route>
         <Route ></Route>
       </Routes>
     </Router>

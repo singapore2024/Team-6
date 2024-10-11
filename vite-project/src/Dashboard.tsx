@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
   const [isFullScreen, setIsFullScreen] = useState(false); // State for full-screen mode
 
   const cards = [
-    { title: "View Orders", icon: <ListAlt fontSize="large" /> },
+    { title: "View Orders", icon: <ListAlt fontSize="large" />, onClick: () => navigate("/orders") },
     { title: "Manage Leaves", icon: <EventAvailable fontSize="large" /> },
     { title: "Cooking Mode", icon: <RestaurantMenu fontSize="large" />, onClick: () => setIsFullScreen(true) }, // Activate full-screen on click
     { title: "Recipes", icon: <MenuBook fontSize="large" /> , onClick: () => navigate("/recipes")},
