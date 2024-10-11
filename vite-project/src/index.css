@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: 'Poppins', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6;
@@ -18,11 +22,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  min-width: fit-content;
   background: linear-gradient(135deg, #1f4037 0%, #99f2c8 100%);
-  color: #ffffff;
+  background: #ffffff 
 }
+
+
 
 /* Typography settings */
 h1, h2, h3, h4, h5, h6 {

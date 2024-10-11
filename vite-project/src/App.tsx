@@ -6,6 +6,7 @@ import './App.css';
 import Dashboard from './Dashboard'; // Import your Dashboard component here
 import RecipeList from './Recipe';
 import Orders from './Orders';
+import Leave from './Leaves';
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/recipes" element={<RecipeList />} />
-        <Route path="/orders" element={<Orders />}></Route>
+        {/* <Route path="/orders" element={<Orders />}></Route> */}
+        <Route path="/leaves" element={<Leave />} />
         <Route ></Route>
       </Routes>
     </Router>
-  );
+  )
 }
 
 export default App;
