@@ -62,11 +62,22 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
     if (taskNumber === currentTasks[personNumber - 1] + 1) {
       return { color: 'black', backgroundColor: 'pink', padding: '8px', borderRadius: '4px' }; // Current task
     } else if (taskNumber < currentTasks[personNumber - 1] + 1) {
-        return { color: 'black' }; // Past tasks
+        return { color: 'black', opacity: 0.5}; // Past tasks
       } else {
-        return { color: 'grey' }; // Future tasks
+        return { color: 'grey', opacity: 0.15 }; // Future tasks
       }
     };
+
+    const speak = (text: string) => {
+        // Check if speech synthesis is supported
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'en-US'; // Set language if needed
+          window.speechSynthesis.speak(utterance);
+        } else {
+          console.error("Text-to-speech not supported in this browser.");
+        }
+      };
   
     return (
       <Box
@@ -87,79 +98,38 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           overflow: 'hidden', // Prevent any overflow issues
         }}
       >
-        <Typography variant="h2" sx={{ marginBottom: 3 }}>Cooking Mode</Typography>
+        <Typography variant="h2" sx={{ marginBottom: 3 }} color="black">Cooking Mode</Typography>
         
         <Grid container spacing={4} sx={{ width: '80%' }}>
-          <Grid item xs={12} sm={4}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {tasks.map((taskNumber) => (
-                <React.Fragment key={taskNumber}>
-                <Typography 
-                    sx={{ ...getTaskStyle(1, taskNumber) }}
-                    variant="h3"
-                >
-                    {taskList[taskNumber - 1]}
-                </Typography>
-                {/* Conditional rendering for task description */}
-                {taskNumber === currentTask1 + 1 && (
-                    <Typography sx={{ ...getTaskStyle(1, taskNumber) }} color="black" variant="h6">
-                    {taskDescription[taskNumber - 1]}
-                    </Typography>
-                )}
-                </React.Fragment>
-            ))}
-            </Box>
-
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {tasks.map((taskNumber) => (
-                <React.Fragment key={taskNumber}>
-                <Typography 
-                    sx={{ ...getTaskStyle(2, taskNumber) }}
-                    variant="h3"
-                >
-                    {taskList[taskNumber - 1]}
-                </Typography>
-                {/* Conditional rendering for task description */}
-                {taskNumber === currentTask1 + 1 && (
-                    <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="h6">
-                    {taskDescription[taskNumber - 1]}
-                    </Typography>
-                )}
-                </React.Fragment>
-            ))}
-            </Box>
-          </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
                     <Typography 
-                        sx={{ ...getTaskStyle(3, taskNumber) }}
+                        sx={{ ...getTaskStyle(1, taskNumber) }}
                         variant="h3"
                     >
                         {taskList[taskNumber - 1]}
                     </Typography>
                     {/* Conditional rendering for task description */}
                     {taskNumber === currentTask1 + 1 && (
-                        <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="h6">
+                        <Typography sx={{ ...getTaskStyle(1, taskNumber) }} color="black" variant="h6">
                         {taskDescription[taskNumber - 1]}
                         </Typography>
                     )}
                     </React.Fragment>
                 ))}
             </Box>
-          </Grid>
-        </Grid>
-  
-        <Box sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
-                        variant="contained" 
+                        variant="contained"
                         color="primary" 
-                        onClick={decrementNextTask1} 
+                        onClick={() => {
+                            decrementNextTask1();
+                            speak(taskList[currentTask1-1]);
+                            speak(taskDescription[currentTask1-1]);
+                        }}
                         disabled={currentTask1 <= 0} // Disable button if on the last task
                     >
                         Undo 1
@@ -167,13 +137,38 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                     <Button 
                         variant="contained" 
                         color="primary" 
-                        onClick={incrementNextTask1} 
+                        onClick={() => {
+                            incrementNextTask1();
+                            speak(taskList[currentTask1+1]);
+                            speak(taskDescription[currentTask1+1]);
+                        }}
                         disabled={currentTask1 >= tasks.length - 1} // Disable button if on the last task
                     >
                         Next 1
                     </Button>
                 </Box>
             </Container>
+
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {tasks.map((taskNumber) => (
+                    <React.Fragment key={taskNumber}>
+                    <Typography 
+                        sx={{ ...getTaskStyle(2, taskNumber) }}
+                        variant="h3"
+                    >
+                        {taskList[taskNumber - 1]}
+                    </Typography>
+                    {/* Conditional rendering for task description */}
+                    {taskNumber === currentTask2 + 1 && (
+                        <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="h6">
+                        {taskDescription[taskNumber - 1]}
+                        </Typography>
+                    )}
+                    </React.Fragment>
+                ))}
+            </Box>
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
@@ -194,6 +189,26 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                     </Button>
                 </Box>
             </Container>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {tasks.map((taskNumber) => (
+                    <React.Fragment key={taskNumber}>
+                    <Typography 
+                        sx={{ ...getTaskStyle(3, taskNumber) }}
+                        variant="h3"
+                    >
+                        {taskList[taskNumber - 1]}
+                    </Typography>
+                    {/* Conditional rendering for task description */}
+                    {taskNumber === currentTask3 + 1 && (
+                        <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="h6">
+                        {taskDescription[taskNumber - 1]}
+                        </Typography>
+                    )}
+                    </React.Fragment>
+                ))}
+            </Box>
             <Container>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Button 
@@ -214,6 +229,13 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                     </Button>
                 </Box>
             </Container>
+          </Grid>
+        </Grid>
+  
+        <Box sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
+            
+            
+           
           <Button
             startIcon={<Close />}
             variant="contained"
