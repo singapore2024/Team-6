@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent, Typography, List, ListItem, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Recipe from './Recipe'; // Assuming Recipe type is exported from RecipeCard
+import BackButton from './components/BackButton';
 
 
 interface Order {
@@ -36,35 +37,38 @@ interface Order {
         { recipe: sampleRecipes[1], quantity: 20 },
       ];
       return (
-        <Card sx={{ padding: 2, borderRadius: 2, boxShadow: 3 }}>
-          <CardContent>
-            <Typography variant="h2" sx={{ marginBottom: 2 }}>
-              Orders List
-            </Typography>
-            <List>
-              {sampleOrders.map((order, index) => (
-                <Accordion key={index} sx={{ marginBottom: 2 }}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls={`order-content-${index}`}
-                    id={`order-header-${index}`}
-                  >
-                    <Typography variant="h4">
-                      {order.recipe.name} - {order.quantity} orders
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <ol style={{ textAlign: 'left', paddingLeft: '20px', fontSize: '20px' }}>
-                      {order.recipe.steps.map((step, stepIndex) => (
-                        <li key={stepIndex}>{step}</li>
-                      ))}
-                    </ol>
-                  </AccordionDetails>
-                </Accordion>
-              ))}
-            </List>
-          </CardContent>
-        </Card>
+        <>
+          <BackButton />
+          <Card sx={{ padding: 2, borderRadius: 2, boxShadow: 3 }}>
+            <CardContent>
+              <Typography variant="h2" sx={{ marginBottom: 2 }}>
+                Orders List
+              </Typography>
+              <List>
+                {sampleOrders.map((order, index) => (
+                  <Accordion key={index} sx={{ marginBottom: 2 }}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls={`order-content-${index}`}
+                      id={`order-header-${index}`}
+                    >
+                      <Typography variant="h4">
+                        {order.recipe.name} - {order.quantity} orders
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <ol style={{ textAlign: 'left', paddingLeft: '20px', fontSize: '20px' }}>
+                        {order.recipe.steps.map((step, stepIndex) => (
+                          <li key={stepIndex}>{step}</li>
+                        ))}
+                      </ol>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              </List>
+            </CardContent>
+          </Card>
+        </>
       );
   };
   

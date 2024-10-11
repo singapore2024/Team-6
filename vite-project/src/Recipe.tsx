@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { ExpandMore, RestaurantMenu } from "@mui/icons-material";
 import axios from "axios";
+import BackButton from "./components/BackButton";
 
 
 interface Recipe {
@@ -106,6 +107,7 @@ const RecipeList: React.FC = () => {
 
   return (
     <>
+      <BackButton />
       <Typography variant="h2" color="black" gutterBottom>
         Recipe List
       </Typography>
