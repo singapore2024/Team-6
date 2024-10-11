@@ -6,7 +6,13 @@ interface CookingModeProps {
   onExit: () => void;
 }
 
-const tasks = [1, 2, 3, 4, 5, 6, 7]; // Example tasks in ascending order
+const tasks = [1, 2, 3]; // Example tasks in ascending order
+const taskList = ["Prepare Chicken", "Cook Chicken", "Serve Chicken"];
+const taskDescription = [
+    "Marinate Chicken, Cut Chicken",
+    "Set oven to 180 degrees, oven bake for 25 minutes",
+    "Cut into 4 slices"
+];
 
 const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
   const [currentTask1, setCurrentTask1] = useState(0);
@@ -86,39 +92,42 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
         <Grid container spacing={4} sx={{ width: '80%' }}>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
+              {tasks.map((taskNumber) => (
                 <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(1, task), marginBottom: 2 }}
+                  key={taskNumber} 
+                  sx={{ ...getTaskStyle(1, taskNumber), marginBottom: 2 }}
                   variant="h6"
                 >
-                  Task {task}
+                  {taskList[taskNumber - 1]}
+                  {(taskNumber === currentTask1 + 1) && taskDescription[taskNumber - 1] }
                 </Typography>
               ))}
             </Box>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
+              {tasks.map((taskNumber) => (
                 <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(2, task), marginBottom: 2 }}
+                  key={taskNumber} 
+                  sx={{ ...getTaskStyle(2, taskNumber), marginBottom: 2 }}
                   variant="h6"
                 >
-                  Task {task}
+                  {taskList[taskNumber - 1]}
+                  {(taskNumber === currentTask2 + 1) && taskDescription[taskNumber - 1] }
                 </Typography>
               ))}
             </Box>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
+              {tasks.map((taskNumber) => (
                 <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(3, task), marginBottom: 2 }}
+                  key={taskNumber} 
+                  sx={{ ...getTaskStyle(3, taskNumber), marginBottom: 2 }}
                   variant="h6"
                 >
-                  Task {task}
+                  {taskList[taskNumber - 1]}
+                  {(taskNumber === currentTask3 + 1) && taskDescription[taskNumber - 1] }
                 </Typography>
               ))}
             </Box>
