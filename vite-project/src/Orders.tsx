@@ -36,6 +36,7 @@ interface Order {
         { recipe: sampleRecipes[1], quantity: 20 },
       ];
       return (
+    
         <Card sx={{ padding: 2, borderRadius: 2, boxShadow: 3 }}>
           <CardContent>
             <Typography variant="h2" sx={{ marginBottom: 2 }}>
