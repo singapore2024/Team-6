@@ -85,7 +85,7 @@ const EmployeesPage: React.FC = () => {
     const updateUserPreferences = async (id: number, textToSpeechEnabled: boolean, enlargedText: boolean) => {
         try {
             const response = await fetch(`http://localhost:3000/api/v1/users/${id}`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
