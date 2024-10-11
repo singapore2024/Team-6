@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Dashboard from './Dashboard'; // Import your Dashboard component here
 import RecipeList from './Recipe';
+import Orders from './Orders';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/recipes" element={<RecipeList />} />
+        <Route path="/orders" element={<Orders />}></Route>
         <Route ></Route>
       </Routes>
     </Router>
