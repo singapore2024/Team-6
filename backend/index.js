@@ -1,11 +1,24 @@
 const express = require('express');
 const app = express();
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
+    // Allow all origins (or specify the origin explicitly in production)
     res.header("Access-Control-Allow-Origin", "*");
+    
+    // Allow specific headers required by your frontend
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  
+    // Allow specific HTTP methods
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  
+    // If this is a preflight request, respond with 200 and end the request
+    if (req.method === "OPTIONS") {
+      res.status(200).end(); // Respond to OPTIONS with 200 OK
+    } else {
+      next(); // For other requests, proceed to next middleware or route handler
+    }
   });
+  
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }))
