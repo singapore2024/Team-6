@@ -1,8 +1,13 @@
 const express = require('express');
 const app = express();
 
-// Middleware (Parsers, etc.)
-app.use(express.json()); // For parsing application/json
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }))
 const db = require('./database');
 
