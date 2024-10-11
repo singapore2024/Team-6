@@ -13,13 +13,13 @@ const getLeaveRequests = async (req, res) => {
       throw requestError;
     }
 
-    // For each request, fetch the user name from the users table
     const requestsWithUserNames = await Promise.all(
       requests.map(async (request) => {
+        console.log(request)
         const { data: user, error: userError } = await supabase
           .from(USERS_TABLE)
           .select('name')  
-          .eq('id', request.user_id) 
+          .eq('id', request.user) 
           .single(); 
 
         if (userError) {
@@ -28,7 +28,7 @@ const getLeaveRequests = async (req, res) => {
 
         return {
           ...request,
-          user_name: user.name
+          username: user.name
         };
       })
     );
