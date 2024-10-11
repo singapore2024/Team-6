@@ -1,8 +1,10 @@
 import React from "react";
 import SpeakerIcon from "../icons/speakericon.png"
 import TextSizeIcon from "../icons/text_size.png"
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import BackButton from "../components/BackButton";
+import logo from '../assets/logo.jpg'; // Adjust the path if necessary
+
 
 type EmployeeInfo = {
     name: string,
@@ -70,7 +72,19 @@ const EmployeesPage: React.FC = () => {
         <>
             <BackButton />
             <div className='w-[680px] h-full'>
-                <Typography variant="h2" color="black">Employee's Profiles</Typography>
+                <Box sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', // Center horizontally
+                    padding: 2 
+                }}>
+                    <img 
+                    src={logo} 
+                    alt="Logo" 
+                    style={{ width: '100px', height: 'auto', marginRight: '16px' }} 
+                    /> {/* Add your logo here */}
+                    <Typography variant="h2" color="black">Employee's Profiles</Typography>
+                </Box>    
                 <ul className='w-full min-h-96 max-h-96 h-full items-center list-disc gap-1 overflow-y-scroll'>
                     {employeesInfo && employeesInfo.map((e) =>
                         <EmployeeCard name={e.name}
