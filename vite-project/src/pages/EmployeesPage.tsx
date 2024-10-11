@@ -2,6 +2,7 @@ import React from "react";
 import SpeakerIcon from "../icons/speakericon.png"
 import TextSizeIcon from "../icons/text_size.png"
 import { Typography } from "@mui/material";
+import BackButton from "../components/BackButton";
 
 type EmployeeInfo = {
     name: string,
@@ -66,16 +67,19 @@ const EmployeesPage: React.FC = () => {
         { name: 'Soe', textToSpeechEnabled: false, enlargedText: true }
     ];
     return (
-        <div className='w-[680px] h-full'>
-            <Typography variant="h2" color="black">Employee's Profiles</Typography>
-            <ul className='w-full min-h-96 max-h-96 h-full items-center list-disc gap-1 overflow-y-scroll'>
-                {employeesInfo && employeesInfo.map((e) =>
-                    <EmployeeCard name={e.name}
-                        textToSpeechEnabled={e.textToSpeechEnabled}
-                        enlargedText={e.enlargedText}></EmployeeCard>)
-                }
-            </ul>
-        </div>
+        <>
+            <BackButton></BackButton>
+            <div className='w-[680px] h-full'>
+                <Typography variant="h2" color="black">Employee's Profiles</Typography>
+                <ul className='w-full min-h-96 max-h-96 h-full items-center list-disc gap-1 overflow-y-scroll'>
+                    {employeesInfo && employeesInfo.map((e) =>
+                        <EmployeeCard name={e.name}
+                            textToSpeechEnabled={e.textToSpeechEnabled}
+                            enlargedText={e.enlargedText}></EmployeeCard>)
+                    }
+                </ul>
+            </div>
+        </>
     );
 };
 
