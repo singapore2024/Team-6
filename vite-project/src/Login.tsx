@@ -56,7 +56,7 @@ const Login: React.FC = () => {
           <div className='flex w-[400px] basis-1/3 items-left'>
             <label className='basis-1/4 text-black' htmlFor="username">Username:</label>
             <input
-              className='basis-3/4 border-2'
+              className='basis-3/4 border-2 text-black'
               type="text"
               id="username"
               value={username}
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
           <div className='flex w-[400px] basis-1/3'>
             <label className='basis-1/4 text-black' htmlFor="password">Password:</label>
             <input
-              className='basis-3/4 border-2'
+              className='basis-3/4 border-2 text-black'
               type="password"
               id="password"
               value={password}
