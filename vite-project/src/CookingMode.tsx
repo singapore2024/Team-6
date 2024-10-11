@@ -6,7 +6,13 @@ interface CookingModeProps {
   onExit: () => void;
 }
 
-const tasks = [1, 2, 3, 4, 5, 6, 7]; // Example tasks in ascending order
+const tasks = [1, 2, 3]; // Example tasks in ascending order
+const taskList = ["Prepare Chicken", "Cook Chicken", "Serve Chicken"];
+const taskDescription = [
+    "Marinate Chicken, Cut Chicken",
+    "Set oven to 180 degrees, oven bake for 25 minutes",
+    "Cut into 4 slices"
+];
 
 const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
   const [currentTask1, setCurrentTask1] = useState(0);
@@ -74,7 +80,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          backgroundColor: '#333', // Full-screen background
+          backgroundColor: 'white', // Full-screen background
           color: '#fff',
           margin: 0,
           padding: 0,
@@ -85,42 +91,64 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
         
         <Grid container spacing={4} sx={{ width: '80%' }}>
           <Grid item xs={12} sm={4}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {tasks.map((taskNumber) => (
+                <React.Fragment key={taskNumber}>
                 <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(1, task), marginBottom: 2 }}
-                  variant="h6"
+                    sx={{ ...getTaskStyle(1, taskNumber) }}
+                    variant="h3"
                 >
-                  Task {task}
+                    {taskList[taskNumber - 1]}
                 </Typography>
-              ))}
+                {/* Conditional rendering for task description */}
+                {taskNumber === currentTask1 + 1 && (
+                    <Typography sx={{ ...getTaskStyle(1, taskNumber) }} color="black" variant="h6">
+                    {taskDescription[taskNumber - 1]}
+                    </Typography>
+                )}
+                </React.Fragment>
+            ))}
+            </Box>
+
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {tasks.map((taskNumber) => (
+                <React.Fragment key={taskNumber}>
+                <Typography 
+                    sx={{ ...getTaskStyle(2, taskNumber) }}
+                    variant="h3"
+                >
+                    {taskList[taskNumber - 1]}
+                </Typography>
+                {/* Conditional rendering for task description */}
+                {taskNumber === currentTask1 + 1 && (
+                    <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="h6">
+                    {taskDescription[taskNumber - 1]}
+                    </Typography>
+                )}
+                </React.Fragment>
+            ))}
             </Box>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
-                <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(2, task), marginBottom: 2 }}
-                  variant="h6"
-                >
-                  Task {task}
-                </Typography>
-              ))}
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {tasks.map((task) => (
-                <Typography 
-                  key={task} 
-                  sx={{ ...getTaskStyle(3, task), marginBottom: 2 }}
-                  variant="h6"
-                >
-                  Task {task}
-                </Typography>
-              ))}
+                {tasks.map((taskNumber) => (
+                    <React.Fragment key={taskNumber}>
+                    <Typography 
+                        sx={{ ...getTaskStyle(3, taskNumber) }}
+                        variant="h3"
+                    >
+                        {taskList[taskNumber - 1]}
+                    </Typography>
+                    {/* Conditional rendering for task description */}
+                    {taskNumber === currentTask1 + 1 && (
+                        <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="h6">
+                        {taskDescription[taskNumber - 1]}
+                        </Typography>
+                    )}
+                    </React.Fragment>
+                ))}
             </Box>
           </Grid>
         </Grid>
