@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import BackButton from "./components/BackButton";
+
 
 interface CookingModeProps {
   onExit: () => void;
@@ -77,9 +79,9 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
     if (taskNumber === currentTasks[personNumber - 1] + 1) {
       return { color: 'black', backgroundColor: 'pink', padding: '8px', borderRadius: '4px' }; // Current task
     } else if (taskNumber < currentTasks[personNumber - 1] + 1) {
-        return { color: 'black', opacity: 0.15}; // Past tasks
+        return { color: 'black', opacity: 0.05 }; // Past tasks
       } else {
-        return { color: 'grey', opacity: 0.15 }; // Future tasks
+        return { color: 'grey', opacity: 0.05 }; // Future tasks
       }
     };
 
@@ -96,6 +98,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
       };
   
     return (
+        <><BackButton></BackButton>
       <Box
         sx={{
           position: 'fixed', // Fixes to the screen
@@ -119,11 +122,12 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
         <Grid container spacing={4} sx={{ width: '80%' }}>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
-                <Typography color="black" variant="h2"><b>Tom</b></Typography>
+                <Typography color="black" variant="h2"><b>John</b></Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
+                        <Box sx={{ ...getTaskStyle(1, taskNumber) }}>
                     <Typography 
                         sx={{ ...getTaskStyle(1, taskNumber) }}
                         variant="h4"
@@ -136,6 +140,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         {taskDescription1[taskNumber - 1]}
                         </Typography>
                     )}
+                    </Box>
                     </React.Fragment>
                 ))}
             </Box>
@@ -182,11 +187,12 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
-                <Typography color="black" variant="h2"><b>Dick</b></Typography>
+                <Typography color="black" variant="h2"><b>Mary</b></Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
+                        <Box sx={{ ...getTaskStyle(1, taskNumber) }}>
                     <Typography 
                         sx={{ ...getTaskStyle(2, taskNumber) }}
                         variant="h4"
@@ -199,6 +205,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         {taskDescription2[taskNumber - 1]}
                         </Typography>
                     )}
+                    </Box>
                     </React.Fragment>
                 ))}
             </Box>
@@ -236,11 +243,12 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px' }}>
-                <Typography color="black" variant="h2"><b>Harry</b></Typography>
+                <Typography color="black" variant="h2"><b>Aaron</b></Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {tasks.map((taskNumber) => (
                     <React.Fragment key={taskNumber}>
+                        <Box sx={{ ...getTaskStyle(1, taskNumber) }}>
                     <Typography 
                         sx={{ ...getTaskStyle(3, taskNumber) }}
                         variant="h4"
@@ -253,6 +261,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         {taskDescription3[taskNumber - 1]}
                         </Typography>
                     )}
+                    </Box>
                     </React.Fragment>
                 ))}
             </Box>
@@ -290,7 +299,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           </Grid>
         </Grid>
   
-        <Box sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
+        <Box sx={{ display: 'flex', gap: 1, marginTop: 20 }}>
           <Button
             startIcon={<Close />}
             variant="contained"
@@ -301,6 +310,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           </Button>
         </Box>
       </Box>
+      </>
     );
   };
   
