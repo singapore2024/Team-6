@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
 interface CookingModeProps {
@@ -9,20 +9,53 @@ interface CookingModeProps {
 const tasks = [1, 2, 3, 4, 5, 6, 7]; // Example tasks in ascending order
 
 const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
-  const [currentTask, setCurrentTask] = useState(0); // Initial task
+  const [currentTask1, setCurrentTask1] = useState(0);
+  const [currentTask2, setCurrentTask2] = useState(0);
+  const [currentTask3, setCurrentTask3] = useState(0); 
 
-  // Function to increment the current task, ensuring we don't exceed the number of tasks
-  const handleNextTask = () => {
-    if (currentTask < tasks.length - 1) {
-      setCurrentTask(currentTask + 1);
+  const currentTasks = [currentTask1, currentTask2, currentTask3];
+
+  const incrementNextTask1 = () => {
+    if (currentTask1 < tasks.length - 1) {
+      setCurrentTask1(currentTask1 + 1);
+    }
+  };
+
+  const incrementNextTask2 = () => {
+    if (currentTask2 < tasks.length - 1) {
+      setCurrentTask2(currentTask2 + 1);
+    }
+  };
+
+  const incrementNextTask3 = () => {
+    if (currentTask3 < tasks.length - 1) {
+      setCurrentTask3(currentTask3 + 1);
+    }
+  };
+
+  const decrementNextTask1 = () => {
+    if (currentTask1 > 0) {
+      setCurrentTask1(currentTask1 - 1);
+    }
+  };
+
+  const decrementNextTask2 = () => {
+    if (currentTask2 > 0) {
+      setCurrentTask2(currentTask2 - 1);
+    }
+  };
+
+  const decrementNextTask3 = () => {
+    if (currentTask3 > 0) {
+      setCurrentTask3(currentTask3 - 1);
     }
   };
 
   // Function to determine task styles
-  const getTaskStyle = (taskNumber: number) => {
-    if (taskNumber === currentTask + 1) {
+  const getTaskStyle = (personNumber: number, taskNumber: number) => {
+    if (taskNumber === currentTasks[personNumber - 1] + 1) {
       return { color: 'black', backgroundColor: 'pink', padding: '8px', borderRadius: '4px' }; // Current task
-    } else if (taskNumber < currentTask + 1) {
+    } else if (taskNumber < currentTasks[personNumber - 1] + 1) {
         return { color: 'black' }; // Past tasks
       } else {
         return { color: 'grey' }; // Future tasks
@@ -56,7 +89,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
               {tasks.map((task) => (
                 <Typography 
                   key={task} 
-                  sx={{ ...getTaskStyle(task), marginBottom: 2 }}
+                  sx={{ ...getTaskStyle(1, task), marginBottom: 2 }}
                   variant="h6"
                 >
                   Task {task}
@@ -69,7 +102,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
               {tasks.map((task) => (
                 <Typography 
                   key={task} 
-                  sx={{ ...getTaskStyle(task), marginBottom: 2 }}
+                  sx={{ ...getTaskStyle(2, task), marginBottom: 2 }}
                   variant="h6"
                 >
                   Task {task}
@@ -82,7 +115,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
               {tasks.map((task) => (
                 <Typography 
                   key={task} 
-                  sx={{ ...getTaskStyle(task), marginBottom: 2 }}
+                  sx={{ ...getTaskStyle(3, task), marginBottom: 2 }}
                   variant="h6"
                 >
                   Task {task}
@@ -92,15 +125,67 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           </Grid>
         </Grid>
   
-        <Box sx={{ display: 'flex', gap: 2, marginTop: 4 }}>
-          <Button 
-            variant="contained" 
-            color="primary" 
-            onClick={handleNextTask} 
-            disabled={currentTask >= tasks.length - 1} // Disable button if on the last task
-          >
-            Next Task
-          </Button>
+        <Box sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
+            <Container>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={decrementNextTask1} 
+                        disabled={currentTask1 <= 0} // Disable button if on the last task
+                    >
+                        Undo 1
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={incrementNextTask1} 
+                        disabled={currentTask1 >= tasks.length - 1} // Disable button if on the last task
+                    >
+                        Next 1
+                    </Button>
+                </Box>
+            </Container>
+            <Container>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={decrementNextTask2} 
+                        disabled={currentTask2 <= 0} // Disable button if on the last task
+                    >
+                        Undo 2
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={incrementNextTask2} 
+                        disabled={currentTask2 >= tasks.length - 1} // Disable button if on the last task
+                    >
+                        Next 2
+                    </Button>
+                </Box>
+            </Container>
+            <Container>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={decrementNextTask3} 
+                        disabled={currentTask3 <= 0} // Disable button if on the last task
+                    >
+                        Undo 3
+                    </Button>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={incrementNextTask3} 
+                        disabled={currentTask3 >= tasks.length - 1} // Disable button if on the last task
+                    >
+                        Next 3
+                    </Button>
+                </Box>
+            </Container>
           <Button
             startIcon={<Close />}
             variant="contained"
