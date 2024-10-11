@@ -48,40 +48,46 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto", padding: "1rem" }}>
+    <div className='w-[400px] m-0 p-1'>
       <h1>Login</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <div className='flex flex-col w-[400px] gap-2 justify-center'>
+          <div className='flex w-[400px] basis-1/3 items-left'>
+            <label className='basis-1/4 text-black' htmlFor="username">Username:</label>
+            <input
+              className='basis-3/4 border-2'
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className='flex w-[400px] basis-1/3'>
+            <label className='basis-1/4 text-black' htmlFor="password">Password:</label>
+            <input
+              className='basis-3/4 border-2'
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className='flex w-[400px] basis-1/3'>
+            <button
+              type="submit"
+              style={{
+                width: "100%",
+                padding: "0.5rem",
+                backgroundColor: "#007BFF",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Login
+            </button>
+          </div>
         </div>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "0.5rem",
-            backgroundColor: "#007BFF",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
       </form>
     </div>
   );
