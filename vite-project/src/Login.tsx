@@ -59,7 +59,6 @@ const Login: React.FC = () => {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
           />
         </div>
         <div style={{ marginBottom: "1rem" }}>
@@ -69,7 +68,6 @@ const Login: React.FC = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
           />
         </div>
         <button
@@ -78,7 +76,6 @@ const Login: React.FC = () => {
             width: "100%",
             padding: "0.5rem",
             backgroundColor: "#007BFF",
-            color: "white",
             border: "none",
             cursor: "pointer",
           }}
