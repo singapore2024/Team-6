@@ -62,9 +62,9 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
     if (taskNumber === currentTasks[personNumber - 1] + 1) {
       return { color: 'black', backgroundColor: 'pink', padding: '8px', borderRadius: '4px' }; // Current task
     } else if (taskNumber < currentTasks[personNumber - 1] + 1) {
-        return { color: 'black' }; // Past tasks
+        return { color: 'black', opacity: 0.5 }; // Past tasks
       } else {
-        return { color: 'grey' }; // Future tasks
+        return { color: 'grey', opacity: 0.15 }; // Future tasks
       }
     };
   
@@ -87,7 +87,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
           overflow: 'hidden', // Prevent any overflow issues
         }}
       >
-        <Typography variant="h2" sx={{ marginBottom: 3 }}>Cooking Mode</Typography>
+        <Typography variant="h2" sx={{ marginBottom: 3 }} color="black">Cooking Mode</Typography>
         
         <Grid container spacing={4} sx={{ width: '80%' }}>
           <Grid item xs={12} sm={4}>
@@ -122,7 +122,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                     {taskList[taskNumber - 1]}
                 </Typography>
                 {/* Conditional rendering for task description */}
-                {taskNumber === currentTask1 + 1 && (
+                {taskNumber === currentTask2 + 1 && (
                     <Typography sx={{ ...getTaskStyle(2, taskNumber) }} color="black" variant="h6">
                     {taskDescription[taskNumber - 1]}
                     </Typography>
@@ -142,7 +142,7 @@ const CookingMode: React.FC<CookingModeProps> = ({ onExit }) => {
                         {taskList[taskNumber - 1]}
                     </Typography>
                     {/* Conditional rendering for task description */}
-                    {taskNumber === currentTask1 + 1 && (
+                    {taskNumber === currentTask3 + 1 && (
                         <Typography sx={{ ...getTaskStyle(3, taskNumber) }} color="black" variant="h6">
                         {taskDescription[taskNumber - 1]}
                         </Typography>
