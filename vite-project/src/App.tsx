@@ -7,6 +7,7 @@ import Dashboard from './Dashboard'; // Import your Dashboard component here
 import RecipeList from './Recipe';
 import Orders from './Orders';
 import Leave from './Leaves';
+import EmployeesPage from './pages/EmployeesPage';
 
 function App() {
   return (
@@ -20,9 +21,11 @@ function App() {
         {/* <Route path="/orders" element={<Orders />}></Route> */}
         <Route path="/leaves" element={<Leave />} />
         <Route ></Route>
+        <Route path="/employees" element={<EmployeesPage />} />
+        <Route ></Route>
       </Routes>
     </Router>
-  )
+  );
 }
 
 export default App;
