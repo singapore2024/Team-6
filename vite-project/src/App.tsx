@@ -11,7 +11,9 @@ import Login from './Login';
 import EmployeesPage from './pages/EmployeesPage';
 
 function App() {
+  
   return (
+
     // <>
     //   <Dashboard /> {/* Use the Dashboard component here */}
     // </>
@@ -20,10 +22,9 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path='/login' element={<Login />} />
         <Route path="/recipes" element={<RecipeList />} />
-        {/* <Route path="/orders" element={<Orders />}></Route> */}
         <Route path="/leaves" element={<Leave />} />
-        <Route ></Route>
         <Route path="/employees" element={<EmployeesPage />} />
+        <Route path="/orders" element={<Orders />} ></Route>
         <Route ></Route>
       </Routes>
     </Router>
